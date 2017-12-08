@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="611.0" prefWidth="677.0" style="-fx-background-color: #fff;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label layoutX="42.0" layoutY="45.0" text="Hola Secretario" />
+      <Label layoutX="167.0" layoutY="45.0" prefHeight="17.0" prefWidth="234.0" text="Nombre del secretario aparece aqui" />
+      <Button layoutX="549.0" layoutY="40.0" mnemonicParsing="false" text="Cerrar sesión" />
+      <Label layoutX="251.0" layoutY="89.0" text="INGRESO DE CASOS">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="91.0" layoutY="134.0" text="Número de caso: " />
+      <Label layoutX="91.0" layoutY="172.0" text="Descripción: " />
+      <Label layoutX="91.0" layoutY="251.0" text="Cédula querellante: " />
+      <TextField layoutX="214.0" layoutY="129.0" />
+      <TextField layoutX="214.0" layoutY="167.0" prefHeight="69.0" prefWidth="374.0" />
+      <TextField layoutX="214.0" layoutY="246.0" />
+      <Button layoutX="401.0" layoutY="246.0" mnemonicParsing="false" text="buscar" />
+      <CheckBox layoutX="94.0" layoutY="292.0" mnemonicParsing="false" text="nombre del querellante o nota de no existe" />
+      <Label layoutX="91.0" layoutY="341.0" text="Ingresar querellante" />
+      <Label layoutX="91.0" layoutY="378.0" text="Nombre " />
+      <Label layoutX="367.0" layoutY="378.0" text="Apellido" />
+      <Label layoutX="91.0" layoutY="418.0" text="Cédula" />
+      <Label layoutX="365.0" layoutY="418.0" text="Teléfono" />
+      <Label layoutX="91.0" layoutY="455.0" text="Dirección" />
+      <TextField layoutX="154.0" layoutY="373.0" prefHeight="27.0" prefWidth="189.0" />
+      <TextField layoutX="154.0" layoutY="413.0" prefHeight="27.0" prefWidth="189.0" />
+      <TextField layoutX="427.0" layoutY="373.0" prefHeight="27.0" prefWidth="196.0" />
+      <TextField layoutX="427.0" layoutY="413.0" prefHeight="27.0" prefWidth="196.0" />
+      <TextField layoutX="154.0" layoutY="450.0" prefHeight="27.0" prefWidth="469.0" />
+      <Button layoutX="91.0" layoutY="487.0" mnemonicParsing="false" text="Registrar y asignar" />
+      <Button layoutX="310.0" layoutY="538.0" mnemonicParsing="false" text="Ingresar caso" />
+   </children>
+</AnchorPane>

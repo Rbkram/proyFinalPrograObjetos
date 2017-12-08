@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="415.0" prefWidth="677.0" style="-fx-background-color: #fff;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label layoutX="43.0" layoutY="38.0" text="Querellante: ">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="142.0" layoutY="39.0" text="el nombre del mae" />
+      <Label layoutX="252.0" layoutY="88.0" text="CASOS ASIGNADOS">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <TableView layoutX="181.0" layoutY="138.0" prefHeight="116.0" prefWidth="316.0">
+        <columns>
+          <TableColumn prefWidth="158.0" text="Caso" />
+          <TableColumn prefWidth="157.0" text="Estado" />
+        </columns>
+      </TableView>
+      <Label layoutX="105.0" layoutY="273.0" prefHeight="17.0" prefWidth="468.0" text="*Si el estado es resuelto, dar click en el número de caso para ver los detalles" />
+      <Label layoutX="105.0" layoutY="312.0" text="Detalles: " />
+   </children>
+</AnchorPane>
