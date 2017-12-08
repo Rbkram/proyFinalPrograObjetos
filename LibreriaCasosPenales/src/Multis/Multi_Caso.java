@@ -1,0 +1,144 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package Multis;
+
+import Objetos.Caso;
+import Objetos.Historial_Caso;
+import java.util.ArrayList;
+import java.sql.SQLException;
+import java.time.LocalDate;
+import com.cenfotec.AccesoDatos.*; 
+import Objetos.Juez;
+import Objetos.Querellante;
+import java.sql.Date;
+import java.sql.ResultSet;
+
+
+/**
+ *
+ * @author Becky
+ */
+public class Multi_Caso {
+    
+    public void ingresarCasoBD(String numeroCaso, String descripcionCaso, Querellante querellante_aCargo, Juez juez_nombrado, String estado, LocalDate fecha) throws Exception{
+        
+        Date fechaSql = java.sql.Date.valueOf(fecha);
+        Historial_Caso filaHistorial = new Historial_Caso(fechaSql, estado);
+        ArrayList<Historial_Caso> historalCaso = new ArrayList<>();
+        historalCaso.add(filaHistorial);
+        
+        Caso tmpCaso = new Caso(numeroCaso, descripcionCaso, querellante_aCargo, juez_nombrado, estado, fechaSql, historalCaso);
+        String query;
+        query = "insert into Caso (numeroCaso, descripcionCaso, querellante_aCargo, juez_nombrado, estado, fechaSql, historalCaso) values('" + tmpCaso.getNumeroCaso() + "' ,'"+ tmpCaso.getDescripcionCaso()+ "' ,'"+ tmpCaso.getQuerellante_aCargo().getNombre()+ "' ,'" + tmpCaso.getJuez_nombrado().getNombre() + "' ,'" + tmpCaso.getEstado() + "' ,'" + tmpCaso.getFecha() + "' ,'" + tmpCaso.getHistorialCaso()+"')";
+        try{
+            AccesoBD accesoDatos;
+            accesoDatos = Conector.getConector();
+            accesoDatos.ejecutarSQL(query);
+        }catch(Exception err){
+            throw err;
+        }
+    }
+    
+    //Pendiente ver para los String con la BD
+    public ArrayList<Caso> listarCasosJuez(String pIDJuez){
+       
+        ArrayList<Caso> casos =  new ArrayList<>();
+        
+        String select = "SELECT * FROM Caso WHERE juez_nombrado =" + "'" + pIDJuez + "'";
+
+        try (ResultSet rs = Conector.getConector().getDatosSQL(select)) {
+
+            while (rs.next()) {
+                casos.add(new Caso(rs.getString("numeroCaso"), rs.getString("querellante_aCargo"), rs.getString("juez_nombrado"), rs.getString("estado"), rs.getString("estado"), rs.getDate("fechaSql"), rs.getArray("historalCaso")));
+            }
+
+            rs.close();
+            return Caso;
+
+        }catch(Exception err){
+            System.out.println(err);
+            System.out.println(err.getMessage());
+        }
+        
+        
+        return casos;
+    }
+    
+    //Pendiente ver para los String con la BD
+    public ArrayList<Caso> listarCasosQuerellante(String pIDQuerellante){
+       
+        ArrayList<Caso> casos =  new ArrayList<>();
+        
+        String select = "SELECT * FROM Caso WHERE querellante_aCargo =" + "'" + pIDQuerellante + "'";
+
+        try (ResultSet rs = Conector.getConector().getDatosSQL(select)) {
+
+            while (rs.next()) {
+                casos.add(new Caso(rs.getString("numeroCaso"), rs.getString("querellante_aCargo"), rs.getString("juez_nombrado"), rs.getString("estado"), rs.getString("estado"), rs.getDate("fechaSql"), rs.getArray("historalCaso")));
+            }
+
+            rs.close();
+            return Caso;
+
+        }catch(Exception err){
+            System.out.println(err);
+            System.out.println(err.getMessage());
+        }
+        
+        return casos;
+    }
+    
+    //Pendiente ver para los String con la BD
+    public Caso casoxID(String pIDCaso) throws Exception, SQLException{
+        Caso casoEncontrado = new Caso();
+        String select = "SELECT * FROM Caso WHERE numeroCaso =" + "'" + pIDCaso + "'";
+
+        try (ResultSet rs = Conector.getConector().getDatosSQL(select)) {
+
+            while (rs.next()) {
+                casoEncontrado = new Caso(rs.getString("numeroCaso"), rs.getString("querellante_aCargo"), rs.getString("juez_nombrado"), rs.getString("estado"), rs.getString("estado"), rs.getDate("fechaSql"), rs.getArray("historalCaso"));
+            }
+
+            rs.close();
+            return casoEncontrado;
+
+        }catch(Exception err){
+            System.out.println(err);
+            System.out.println(err.getMessage());
+        }
+        
+        return casoEncontrado;
+    }
+    
+    public void cambiarEstadoCaso(String idCaso, LocalDate fechaCambio, String EstadoCambio) throws Exception{
+        
+        Caso casoxMod;
+        Date fechaSql = java.sql.Date.valueOf(fechaCambio);
+        casoxMod = casoxID(idCaso);
+        casoxMod.setEstado(EstadoCambio);
+        ArrayList<Historial_Caso> historialActualizado;
+        historialActualizado = actualizarHistorialCaso(fechaSql,EstadoCambio);
+        casoxMod.setHistorialCaso(historialActualizado);
+        
+    }
+    
+    public ArrayList<Historial_Caso> actualizarHistorialCaso(Date pFecha, String pEstado){
+        Historial_Caso nuevoCambio = new Historial_Caso(pFecha, pEstado);
+        ArrayList<Historial_Caso> Historial = new ArrayList<>();
+        Historial.add(nuevoCambio);
+        
+        return Historial;
+    }
+    
+    public ArrayList<Historial_Caso> listarHistorial(String pIDCaso) throws Exception, SQLException{
+        
+        ArrayList<Historial_Caso> HistCasos = new ArrayList<>();
+        
+        // pendiente mandar a traer la lista del historial del caso!!!!!!!!!!
+        return HistCasos;
+    }
+    
+}

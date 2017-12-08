@@ -1,0 +1,64 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package Multis;
+
+import Objetos.Juez;
+import java.sql.SQLException;
+import com.cenfotec.AccesoDatos.*;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+
+/**
+ *
+ * @author Becky
+ */
+public class Multi_Juez {
+    
+    public Juez juezxID(String pID) throws Exception{
+        Juez juezEncontrado = new Juez();
+        
+        String select = "SELECT * FROM Juez WHERE cedula =" + "'" + pID + "'";
+
+        try (ResultSet rs = Conector.getConector().getDatosSQL(select)) {
+
+            while (rs.next()) {
+                juezEncontrado = new Juez(rs.getString("nombre"), rs.getString("apellido"), rs.getString("telefono"), rs.getString("sala_pertenece"), rs.getString("cedula"), rs.getString("clave"), rs.getString("usuario"));
+            }
+
+            rs.close();
+            return juezEncontrado;
+
+        }catch(Exception err){
+            System.out.println(err);
+            System.out.println(err.getMessage());
+        }
+        
+        return juezEncontrado;
+    }
+    
+    public ArrayList<Juez> listarJueces() throws Exception{
+       
+        ArrayList<Juez> listaJueces =  new ArrayList<>();
+        
+        String select = "SELECT * FROM Juez";
+
+        try (ResultSet rs = Conector.getConector().getDatosSQL(select)) {
+
+            while (rs.next()) {
+                listaJueces.add(new Juez(rs.getString("nombre"), rs.getString("apellido"), rs.getString("telefono"), rs.getString("sala_pertenece"), rs.getString("cedula"), rs.getString("clave"), rs.getString("usuario")));
+            }
+
+            rs.close();
+            return listaJueces;
+
+        }catch(Exception err){
+            System.out.println(err);
+            System.out.println(err.getMessage());
+        }
+        
+        return listaJueces;
+    } 
+}
