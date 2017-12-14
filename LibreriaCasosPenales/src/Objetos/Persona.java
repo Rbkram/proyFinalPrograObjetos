@@ -14,17 +14,20 @@ public abstract class Persona {
     protected String nombre;
     protected String apellido;
     protected String telefono;
+    protected String cedula;
 
     public Persona() {
         this.nombre = "";
         this.apellido = "";
         this.telefono = "";
+        this.cedula = "";
     }
 
-    public Persona(String nombre, String apellido, String telefono) {
+    public Persona(String nombre, String apellido, String telefono, String cedula) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.telefono = telefono;
+        this.cedula = cedula;
     }
 
     public String getNombre() {
@@ -51,9 +54,17 @@ public abstract class Persona {
         this.telefono = telefono;
     }
 
+    public String getCedula() {
+        return cedula;
+    }
+
+    public void setCedula(String cedula) {
+        this.cedula = cedula;
+    }
+
     @Override
     public String toString() {
-        return "Persona{" + "nombre=" + nombre + ", apellido=" + apellido + ", telefono=" + telefono + '}';
+        return "Persona{" + "nombre=" + nombre + ", apellido=" + apellido + ", telefono=" + telefono + ", cedula=" + cedula + '}';
     }
     
 }
