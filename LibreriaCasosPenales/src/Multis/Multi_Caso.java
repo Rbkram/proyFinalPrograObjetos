@@ -122,6 +122,7 @@ public class Multi_Caso {
         ArrayList<Historial_Caso> historialActualizado;
         historialActualizado = actualizarHistorialCaso(fechaSql,EstadoCambio);
         casoxMod.setHistorialCaso(historialActualizado);
+        //Aqui hay que ver como se va a hacer el cmabio en el historial del estado
         
     }
     
