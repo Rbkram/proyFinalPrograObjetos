@@ -30,9 +30,9 @@ public class Multi_Caso {
         ArrayList<Historial_Caso> historalCaso = new ArrayList<>();
         historalCaso.add(filaHistorial);
         
-        Caso tmpCaso = new Caso(numeroCaso, descripcionCaso, querellante_aCargo, juez_nombrado, estado, fechaSql, historalCaso);
+        Caso tmpCaso = new Caso(numeroCaso, descripcionCaso, querellante_aCargo, juez_nombrado, estado, fechaSql);
         String query;
-        query = "insert into Caso (numeroCaso, descripcionCaso, querellante_aCargo, juez_nombrado, estado, fechaSql, historalCaso) values('" + tmpCaso.getNumeroCaso() + "' ,'"+ tmpCaso.getDescripcionCaso()+ "' ,'"+ tmpCaso.getQuerellante_aCargo().getNombre()+ "' ,'" + tmpCaso.getJuez_nombrado().getNombre() + "' ,'" + tmpCaso.getEstado() + "' ,'" + tmpCaso.getFecha() + "' ,'" + tmpCaso.getHistorialCaso()+"')";
+        query = "insert into Caso (numeroCaso, descripcionCaso, querellante_aCargo, juez_nombrado, estado, fechaSql) values('" + tmpCaso.getNumeroCaso() + "' ,'"+ tmpCaso.getDescripcionCaso()+ "' ,'"+ tmpCaso.getQuerellante_aCargo().getNombre()+ "' ,'" + tmpCaso.getJuez_nombrado().getNombre() + "' ,'" + tmpCaso.getEstado() + "' ,'" + tmpCaso.getFecha()+"')";
         try{
             AccesoBD accesoDatos;
             accesoDatos = Conector.getConector();
@@ -52,7 +52,7 @@ public class Multi_Caso {
         try (ResultSet rs = Conector.getConector().getDatosSQL(select)) {
 
             while (rs.next()) {
-                casos.add(new Caso(rs.getString("numeroCaso"), rs.getString("querellante_aCargo"), rs.getString("juez_nombrado"), rs.getString("estado"), rs.getString("estado"), rs.getDate("fechaSql"), rs.getArray("historalCaso")));
+                casos.add(new Caso(rs.getString("numeroCaso"), rs.getString("descripcionCaso"), rs.getString("querellante_aCargo"), rs.getString("juez_nombrado"), rs.getString("estado"), rs.getDate("fechaSql")));
             }
 
             rs.close();
@@ -77,7 +77,7 @@ public class Multi_Caso {
         try (ResultSet rs = Conector.getConector().getDatosSQL(select)) {
 
             while (rs.next()) {
-                casos.add(new Caso(rs.getString("numeroCaso"), rs.getString("querellante_aCargo"), rs.getString("juez_nombrado"), rs.getString("estado"), rs.getString("estado"), rs.getDate("fechaSql"), rs.getArray("historalCaso")));
+                casos.add(new Caso(rs.getString("numeroCaso"), rs.getString("descripcionCaso"), rs.getString("querellante_aCargo"), rs.getString("juez_nombrado"), rs.getString("estado"), rs.getDate("fechaSql")));
             }
 
             rs.close();
@@ -99,7 +99,7 @@ public class Multi_Caso {
         try (ResultSet rs = Conector.getConector().getDatosSQL(select)) {
 
             while (rs.next()) {
-                casoEncontrado = new Caso(rs.getString("numeroCaso"), rs.getString("querellante_aCargo"), rs.getString("juez_nombrado"), rs.getString("estado"), rs.getString("estado"), rs.getDate("fechaSql"), rs.getArray("historalCaso"));
+                casoEncontrado = new Caso(rs.getString("numeroCaso"), rs.getString("descripcionCaso"), rs.getString("querellante_aCargo"), rs.getString("juez_nombrado"), rs.getString("estado"), rs.getDate("fechaSql"));
             }
 
             rs.close();

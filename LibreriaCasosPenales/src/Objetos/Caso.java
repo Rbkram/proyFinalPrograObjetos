@@ -19,7 +19,6 @@ public class Caso {
     private Juez juez_nombrado;
     private String estado;
     private Date fecha;
-    private ArrayList<Historial_Caso> historialCaso;
 
     public Caso() {
         this.numeroCaso = "";
@@ -27,14 +26,13 @@ public class Caso {
         this.estado = "";
     }
 
-    public Caso(String numeroCaso, String descripcionCaso, Querellante querellante_aCargo, Juez juez_nombrado, String estado, Date fecha, ArrayList<Historial_Caso> historialCaso) {
+    public Caso(String numeroCaso, String descripcionCaso, Querellante querellante_aCargo, Juez juez_nombrado, String estado, Date fecha) {
         this.numeroCaso = numeroCaso;
         this.descripcionCaso = descripcionCaso;
         this.querellante_aCargo = querellante_aCargo;
         this.juez_nombrado = juez_nombrado;
         this.estado = estado;
         this.fecha = fecha;
-        this.historialCaso = historialCaso;
     }
 
     public String getNumeroCaso() {
@@ -85,17 +83,9 @@ public class Caso {
         this.fecha = fecha;
     }
 
-    public ArrayList<Historial_Caso> getHistorialCaso() {
-        return historialCaso;
-    }
-
-    public void setHistorialCaso(ArrayList<Historial_Caso> historialCaso) {
-        this.historialCaso = historialCaso;
-    }
-
     @Override
     public String toString() {
-        return "Caso{" + "numeroCaso=" + numeroCaso + ", descripcionCaso=" + descripcionCaso + ", querellante_aCargo=" + querellante_aCargo + ", juez_nombrado=" + juez_nombrado + ", estado=" + estado + ", fecha=" + fecha + ", historialCaso=" + historialCaso + '}';
+        return "Caso{" + "numeroCaso=" + numeroCaso + ", descripcionCaso=" + descripcionCaso + ", querellante_aCargo=" + querellante_aCargo + ", juez_nombrado=" + juez_nombrado + ", estado=" + estado + ", fecha=" + fecha + '}';
     }
-    
+ 
 }
