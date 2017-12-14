@@ -13,14 +13,17 @@ import java.sql.Date;
  */
 public class Historial_Caso {
     
+    private String idCaso;
     private Date fecha_cambioEstado;
     private String estado;
 
     public Historial_Caso() {
         this.estado = "";
+        this.idCaso = "";
     }
-    
-    public Historial_Caso(Date fecha_cambioEstado, String estado) {
+
+    public Historial_Caso(String idCaso, Date fecha_cambioEstado, String estado) {
+        this.idCaso = idCaso;
         this.fecha_cambioEstado = fecha_cambioEstado;
         this.estado = estado;
     }
@@ -41,10 +44,17 @@ public class Historial_Caso {
         this.estado = estado;
     }
 
+    public String getIdCaso() {
+        return idCaso;
+    }
+
+    public void setIdCaso(String idCaso) {
+        this.idCaso = idCaso;
+    }
+
     @Override
     public String toString() {
-        return "Historial_Caso{" + "fecha_cambioEstado=" + fecha_cambioEstado + ", estado=" + estado + '}';
+        return "Historial_Caso{" + "idCaso=" + idCaso + ", fecha_cambioEstado=" + fecha_cambioEstado + ", estado=" + estado + '}';
     }
-    
     
 }

@@ -26,9 +26,6 @@ public class Multi_Caso {
     public void ingresarCasoBD(String numeroCaso, String descripcionCaso, Querellante querellante_aCargo, Juez juez_nombrado, String estado, LocalDate fecha) throws Exception{
         
         Date fechaSql = java.sql.Date.valueOf(fecha);
-        Historial_Caso filaHistorial = new Historial_Caso(fechaSql, estado);
-        ArrayList<Historial_Caso> historalCaso = new ArrayList<>();
-        historalCaso.add(filaHistorial);
         
         Caso tmpCaso = new Caso(numeroCaso, descripcionCaso, querellante_aCargo, juez_nombrado, estado, fechaSql);
         String query;
@@ -120,18 +117,8 @@ public class Multi_Caso {
         casoxMod = casoxID(idCaso);
         casoxMod.setEstado(EstadoCambio);
         ArrayList<Historial_Caso> historialActualizado;
-        historialActualizado = actualizarHistorialCaso(fechaSql,EstadoCambio);
-        casoxMod.setHistorialCaso(historialActualizado);
         //Aqui hay que ver como se va a hacer el cmabio en el historial del estado
         
-    }
-    
-    public ArrayList<Historial_Caso> actualizarHistorialCaso(Date pFecha, String pEstado){
-        Historial_Caso nuevoCambio = new Historial_Caso(pFecha, pEstado);
-        ArrayList<Historial_Caso> Historial = new ArrayList<>();
-        Historial.add(nuevoCambio);
-        
-        return Historial;
     }
     
     public ArrayList<Historial_Caso> listarHistorial(String pIDCaso) throws Exception, SQLException{
