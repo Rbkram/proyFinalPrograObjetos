@@ -17,15 +17,15 @@ import java.util.ArrayList;
  */
 public class Multi_Secretario {
     
-    public Secretario secretarioxID(String pUsuario){
+    public Secretario secretarioxID(String pIDUsuario){
         Secretario secreEncontrado = new Secretario();
         
-        String select = "SELECT * FROM Secretario WHERE usuario =" + "'" + pUsuario + "'";
+        String select = "SELECT * FROM Secretario WHERE usuario =" + "'" + pIDUsuario + "'";
 
         try (ResultSet rs = Conector.getConector().getDatosSQL(select)) {
 
             while (rs.next()) {
-                secreEncontrado = new Secretario(rs.getString("clave"), rs.getString("usuario"), rs.getString("nombre"), rs.getString("apellido"), rs.getString("telefono"));
+                secreEncontrado = new Secretario(rs.getString("clave"), rs.getString("usuario"), rs.getString("nombre"), rs.getString("apellido"), rs.getString("telefono"), rs.getString("cedula"));
             }
 
             rs.close();
@@ -48,7 +48,7 @@ public class Multi_Secretario {
         try (ResultSet rs = Conector.getConector().getDatosSQL(select)) {
 
             while (rs.next()) {
-                listaSecre.add(new Secretario(rs.getString("clave"), rs.getString("usuario"), rs.getString("nombre"), rs.getString("apellido"), rs.getString("telefono")));
+                listaSecre.add(new Secretario(rs.getString("clave"), rs.getString("usuario"), rs.getString("nombre"), rs.getString("apellido"), rs.getString("telefono"), rs.getString("cedula")));
             }
 
             rs.close();

@@ -66,5 +66,4 @@ public abstract class Persona {
     public String toString() {
         return "Persona{" + "nombre=" + nombre + ", apellido=" + apellido + ", telefono=" + telefono + ", cedula=" + cedula + '}';
     }
-    
 }

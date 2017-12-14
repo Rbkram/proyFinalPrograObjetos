@@ -20,8 +20,8 @@ public class Secretario extends Persona{
         this.usuario = "";
     }
 
-    public Secretario(String clave, String usuario, String nombre, String apellido, String telefono) {
-        super(nombre, apellido, telefono);
+    public Secretario(String clave, String usuario, String nombre, String apellido, String telefono, String cedula) {
+        super(nombre, apellido, telefono, cedula);
         this.clave = clave;
         this.usuario = usuario;
     }
@@ -46,5 +46,5 @@ public class Secretario extends Persona{
     public String toString() {
         return "Secretario{" + "clave=" + clave + ", usuario=" + usuario + '}';
     }
-    
+
 }

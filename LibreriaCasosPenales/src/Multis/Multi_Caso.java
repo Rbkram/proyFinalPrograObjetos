@@ -26,13 +26,10 @@ public class Multi_Caso {
     public void ingresarCasoBD(String numeroCaso, String descripcionCaso, Querellante querellante_aCargo, Juez juez_nombrado, String estado, LocalDate fecha) throws Exception{
         
         Date fechaSql = java.sql.Date.valueOf(fecha);
-        Historial_Caso filaHistorial = new Historial_Caso(fechaSql, estado);
-        ArrayList<Historial_Caso> historalCaso = new ArrayList<>();
-        historalCaso.add(filaHistorial);
         
-        Caso tmpCaso = new Caso(numeroCaso, descripcionCaso, querellante_aCargo, juez_nombrado, estado, fechaSql, historalCaso);
+        Caso tmpCaso = new Caso(numeroCaso, descripcionCaso, querellante_aCargo, juez_nombrado, estado, fechaSql);
         String query;
-        query = "insert into Caso (numeroCaso, descripcionCaso, querellante_aCargo, juez_nombrado, estado, fechaSql, historalCaso) values('" + tmpCaso.getNumeroCaso() + "' ,'"+ tmpCaso.getDescripcionCaso()+ "' ,'"+ tmpCaso.getQuerellante_aCargo().getNombre()+ "' ,'" + tmpCaso.getJuez_nombrado().getNombre() + "' ,'" + tmpCaso.getEstado() + "' ,'" + tmpCaso.getFecha() + "' ,'" + tmpCaso.getHistorialCaso()+"')";
+        query = "insert into Caso (numeroCaso, descripcionCaso, querellante_aCargo, juez_nombrado, estado, fechaSql) values('" + tmpCaso.getNumeroCaso() + "' ,'"+ tmpCaso.getDescripcionCaso()+ "' ,'"+ tmpCaso.getQuerellante_aCargo().getNombre()+ "' ,'" + tmpCaso.getJuez_nombrado().getNombre() + "' ,'" + tmpCaso.getEstado() + "' ,'" + tmpCaso.getFecha()+"')";
         try{
             AccesoBD accesoDatos;
             accesoDatos = Conector.getConector();
@@ -52,7 +49,7 @@ public class Multi_Caso {
         try (ResultSet rs = Conector.getConector().getDatosSQL(select)) {
 
             while (rs.next()) {
-                casos.add(new Caso(rs.getString("numeroCaso"), rs.getString("querellante_aCargo"), rs.getString("juez_nombrado"), rs.getString("estado"), rs.getString("estado"), rs.getDate("fechaSql"), rs.getArray("historalCaso")));
+                casos.add(new Caso(rs.getString("numeroCaso"), rs.getString("descripcionCaso"), rs.getString("querellante_aCargo"), rs.getString("juez_nombrado"), rs.getString("estado"), rs.getDate("fechaSql")));
             }
 
             rs.close();
@@ -77,7 +74,7 @@ public class Multi_Caso {
         try (ResultSet rs = Conector.getConector().getDatosSQL(select)) {
 
             while (rs.next()) {
-                casos.add(new Caso(rs.getString("numeroCaso"), rs.getString("querellante_aCargo"), rs.getString("juez_nombrado"), rs.getString("estado"), rs.getString("estado"), rs.getDate("fechaSql"), rs.getArray("historalCaso")));
+                casos.add(new Caso(rs.getString("numeroCaso"), rs.getString("descripcionCaso"), rs.getString("querellante_aCargo"), rs.getString("juez_nombrado"), rs.getString("estado"), rs.getDate("fechaSql")));
             }
 
             rs.close();
@@ -99,7 +96,7 @@ public class Multi_Caso {
         try (ResultSet rs = Conector.getConector().getDatosSQL(select)) {
 
             while (rs.next()) {
-                casoEncontrado = new Caso(rs.getString("numeroCaso"), rs.getString("querellante_aCargo"), rs.getString("juez_nombrado"), rs.getString("estado"), rs.getString("estado"), rs.getDate("fechaSql"), rs.getArray("historalCaso"));
+                casoEncontrado = new Caso(rs.getString("numeroCaso"), rs.getString("descripcionCaso"), rs.getString("querellante_aCargo"), rs.getString("juez_nombrado"), rs.getString("estado"), rs.getDate("fechaSql"));
             }
 
             rs.close();
@@ -120,17 +117,8 @@ public class Multi_Caso {
         casoxMod = casoxID(idCaso);
         casoxMod.setEstado(EstadoCambio);
         ArrayList<Historial_Caso> historialActualizado;
-        historialActualizado = actualizarHistorialCaso(fechaSql,EstadoCambio);
-        casoxMod.setHistorialCaso(historialActualizado);
+        //Aqui hay que ver como se va a hacer el cmabio en el historial del estado
         
-    }
-    
-    public ArrayList<Historial_Caso> actualizarHistorialCaso(Date pFecha, String pEstado){
-        Historial_Caso nuevoCambio = new Historial_Caso(pFecha, pEstado);
-        ArrayList<Historial_Caso> Historial = new ArrayList<>();
-        Historial.add(nuevoCambio);
-        
-        return Historial;
     }
     
     public ArrayList<Historial_Caso> listarHistorial(String pIDCaso) throws Exception, SQLException{

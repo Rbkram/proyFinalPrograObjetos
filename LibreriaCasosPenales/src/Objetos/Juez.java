@@ -12,22 +12,19 @@ package Objetos;
 public class Juez extends Persona {
     
     private String sala_pertenece;
-    private String cedula;
     private String clave;
     private String usuario;
 
     public Juez() {
         super();
         this.sala_pertenece = "";
-        this.cedula = "";
         this.clave = "";
         this.usuario = "";
     }
 
-    public Juez(String sala_pertenece, String cedula, String clave, String usuario, String nombre, String apellido, String telefono) {
-        super(nombre, apellido, telefono);
+    public Juez(String sala_pertenece, String clave, String usuario, String nombre, String apellido, String telefono, String cedula) {
+        super(nombre, apellido, telefono, cedula);
         this.sala_pertenece = sala_pertenece;
-        this.cedula = cedula;
         this.clave = clave;
         this.usuario = usuario;
     }
@@ -38,14 +35,6 @@ public class Juez extends Persona {
 
     public void setSala_pertenece(String sala_pertenece) {
         this.sala_pertenece = sala_pertenece;
-    }
-
-    public String getCedula() {
-        return cedula;
-    }
-
-    public void setCedula(String cedula) {
-        this.cedula = cedula;
     }
 
     public String getClave() {
@@ -66,7 +55,7 @@ public class Juez extends Persona {
 
     @Override
     public String toString() {
-        return "Juez{" + "sala_pertenece=" + sala_pertenece + ", cedula=" + cedula + ", clave=" + clave + ", usuario=" + usuario + '}';
+        return "Juez{" + "sala_pertenece=" + sala_pertenece + ", clave=" + clave + ", usuario=" + usuario + '}';
     }
-    
+
 }
