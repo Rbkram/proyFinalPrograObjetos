@@ -11,27 +11,16 @@ package Objetos;
  */
 public class Querellante extends Persona{
     
-    private String cedula;
     private String direccion;
 
     public Querellante() {
         super();
-        this.cedula = "";
         this.direccion = "";
     }
 
-    public Querellante(String cedula, String direccion, String nombre, String apellido, String telefono) {
-        super(nombre, apellido, telefono);
-        this.cedula = cedula;
+    public Querellante(String direccion, String nombre, String apellido, String telefono, String cedula) {
+        super(nombre, apellido, telefono, cedula);
         this.direccion = direccion;
-    }
-
-    public String getCedula() {
-        return cedula;
-    }
-
-    public void setCedula(String cedula) {
-        this.cedula = cedula;
     }
 
     public String getDireccion() {
@@ -44,7 +33,7 @@ public class Querellante extends Persona{
 
     @Override
     public String toString() {
-        return "Querellante{" + "cedula=" + cedula + ", direccion=" + direccion + '}';
+        return "Querellante{" + "direccion=" + direccion + '}';
     }
-    
+
 }
