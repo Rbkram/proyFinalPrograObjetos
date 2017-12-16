@@ -29,7 +29,22 @@ public class Multi_Caso {
         
         Caso tmpCaso = new Caso(numeroCaso, descripcionCaso, querellante_aCargo, juez_nombrado, estado, fechaSql);
         String query;
-        query = "insert into Caso (numeroCaso, descripcionCaso, querellante_aCargo, juez_nombrado, estado, fechaSql) values('" + tmpCaso.getNumeroCaso() + "' ,'"+ tmpCaso.getDescripcionCaso()+ "' ,'"+ tmpCaso.getQuerellante_aCargo().getNombre()+ "' ,'" + tmpCaso.getJuez_nombrado().getNombre() + "' ,'" + tmpCaso.getEstado() + "' ,'" + tmpCaso.getFecha()+"')";
+        query = "insert into TCASO (NUMERO, DESCRIPCION, QUERELLANTE, JUEZ_NOMBRADO, ESTADO, FECHA) values('" + tmpCaso.getNumeroCaso() + "' ,'" + tmpCaso.getDescripcionCaso()+ "' ,'" + tmpCaso.getQuerellante_aCargo()+ "' ,'" + tmpCaso.getJuez_nombrado() + "' ,'" + tmpCaso.getEstado() + "' ,'" + tmpCaso.getFecha()+"')";
+        try{
+            AccesoBD accesoDatos;
+            accesoDatos = Conector.getConector();
+            accesoDatos.ejecutarSQL(query);
+        }catch(Exception err){
+            throw err;
+        }
+    }
+
+    public void registrarNuevoEstado(String casoCorrespondiente, String nuevoEstado, LocalDate fecha) throws Exception{
+        
+        Date fechaSql = java.sql.Date.valueOf(fecha);
+        
+        String query;
+        query = "insert into THISTORIAL (NUMERO_CASO,FECHA_CAMBIO,ESTADO) values('" + casoCorrespondiente + "' ,'" + nuevoEstado+ "' ,'" + fechaSql + "')";
         try{
             AccesoBD accesoDatos;
             accesoDatos = Conector.getConector();
