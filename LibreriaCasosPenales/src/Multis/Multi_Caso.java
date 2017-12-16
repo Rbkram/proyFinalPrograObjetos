@@ -64,7 +64,7 @@ public class Multi_Caso {
         return casos;
     }
     
-    //Pendiente ver para los String con la BD
+    //Pendiente ver para los holaaa hola prueba con la BD
     public ArrayList<Caso> listarCasosQuerellante(String pIDQuerellante){
        
         ArrayList<Caso> casos =  new ArrayList<>();
