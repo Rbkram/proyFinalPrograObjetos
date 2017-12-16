@@ -21,7 +21,8 @@ public class Multi_Querellante {
         
         Querellante tmpQuerellante = new Querellante(cedula, direccion, nombre, apellido, telefono);
         String query;
-        query = "insert into Querellante(cedula, direccion, nombre, apellido, telefono) values('" + tmpQuerellante.getCedula()+ "' ,'"+ tmpQuerellante.getDireccion()+ "' ,'"+ tmpQuerellante.getNombre()+ "' ,'"+ tmpQuerellante.getApellido() + "' ,'"+ tmpQuerellante.getTelefono()+"')";
+        query = "insert into Querellante(NOMBRE, APELLIDO, TELEFONO, CEDULA, DIRECCION) values('" + tmpQuerellante.getNombre()+ "' ,'"+ tmpQuerellante.getApellido()+ "' ,'"+ tmpQuerellante.getTelefono()+ "' ,'"+ tmpQuerellante.getCedula() + "' ,'"+ tmpQuerellante.getDireccion()+"')";
+       
         try{
             AccesoBD accesoDatos;
             accesoDatos = Conector.getConector();
@@ -34,12 +35,12 @@ public class Multi_Querellante {
     public Querellante querellantexID(String pID) throws Exception{
         
         Querellante querellanteEncontrado = new Querellante();
-        String select = "SELECT * FROM Querellante WHERE cedula =" + "'" + pID + "'";
+        String select = "SELECT * FROM Querellante WHERE CEDULA =" + "'" + pID + "'";
 
         try (ResultSet rs = Conector.getConector().getDatosSQL(select)) {
 
             while (rs.next()) {
-                querellanteEncontrado = new Querellante(rs.getString("cedula"), rs.getString("direccion"), rs.getString("nombre"), rs.getString("apellido"), rs.getString("telefono"));
+                querellanteEncontrado = new Querellante(rs.getString("NOMBRE"), rs.getString("APELLIDO"), rs.getString("TELEFONO"), rs.getString("CEDULA"), rs.getString("DIRECCION"));
             }
 
             rs.close();

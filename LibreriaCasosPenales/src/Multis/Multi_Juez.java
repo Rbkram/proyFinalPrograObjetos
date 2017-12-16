@@ -20,12 +20,12 @@ public class Multi_Juez {
     public Juez juezxID(String pID) throws Exception{
         Juez juezEncontrado = new Juez();
         
-        String select = "SELECT * FROM Juez WHERE cedula =" + "'" + pID + "'";
+        String select = "SELECT * FROM Juez WHERE CEDULA =" + "'" + pID + "'";
 
         try (ResultSet rs = Conector.getConector().getDatosSQL(select)) {
 
             while (rs.next()) {
-                juezEncontrado = new Juez(rs.getString("nombre"), rs.getString("apellido"), rs.getString("telefono"), rs.getString("sala_pertenece"), rs.getString("cedula"), rs.getString("clave"), rs.getString("usuario"));
+                juezEncontrado = new Juez(rs.getString("NOMBRE"), rs.getString("APELLIDO"), rs.getString("TELEFONO"), rs.getString("SALA"), rs.getString("CEDULA"), rs.getString("CLAVE"), rs.getString("NOMBRE_USUARIO"));
             }
 
             rs.close();

@@ -20,12 +20,12 @@ public class Multi_Secretario {
     public Secretario secretarioxID(String pIDUsuario){
         Secretario secreEncontrado = new Secretario();
         
-        String select = "SELECT * FROM Secretario WHERE usuario =" + "'" + pIDUsuario + "'";
+        String select = "SELECT * FROM Secretario WHERE CEDULA =" + "'" + pIDUsuario + "'";
 
         try (ResultSet rs = Conector.getConector().getDatosSQL(select)) {
 
             while (rs.next()) {
-                secreEncontrado = new Secretario(rs.getString("clave"), rs.getString("usuario"), rs.getString("nombre"), rs.getString("apellido"), rs.getString("telefono"), rs.getString("cedula"));
+                secreEncontrado = new Secretario(rs.getString("NOMBRE"), rs.getString("APELLIDO"), rs.getString("TELEFONO"), rs.getString("CEDULA"), rs.getString("NOMBRE_USUARIO"), rs.getString("CEDULA"));
             }
 
             rs.close();
@@ -48,7 +48,7 @@ public class Multi_Secretario {
         try (ResultSet rs = Conector.getConector().getDatosSQL(select)) {
 
             while (rs.next()) {
-                listaSecre.add(new Secretario(rs.getString("clave"), rs.getString("usuario"), rs.getString("nombre"), rs.getString("apellido"), rs.getString("telefono"), rs.getString("cedula")));
+                listaSecre.add(new Secretario(rs.getString("NOMBRE"), rs.getString("APELLIDO"), rs.getString("TELEFONO"), rs.getString("CEDULA"), rs.getString("NOMBRE_USUARIO"), rs.getString("CEDULA")));
             }
 
             rs.close();

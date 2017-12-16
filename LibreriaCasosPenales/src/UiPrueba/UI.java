@@ -32,6 +32,8 @@ public class UI {
     static PrintStream out = System.out;
     static int CodigoDelMovimiento = 0;
     static Gestor_Juez miJuez = new Gestor_Juez();
+    static Gestor_Querellante miQuere = new Gestor_Querellante();
+    static Gestor_Secretario miSecre = new Gestor_Secretario();
 
 /**
  * @param args clase principal para inciar el código
@@ -94,15 +96,15 @@ public class UI {
             break;
             
             case 2:
-                // listarClientes();
+                regQuerellante();
             break;
             
             case 3:
-                // registrarCuenta(); 
+                listarQuere(); 
             break;
             
             case 4:
-               // listarCuentasPersonales();
+               listarSecre();
             break;
             
             case 5:
@@ -123,6 +125,37 @@ public class UI {
             
         }
         return salir;    
+    }
+    
+    
+    public static void regQuerellante() throws IOException{
+        
+        String direccion,nombre, apellido, telefono, cedula;
+        
+        try{
+            out.println("Ingrese la cédula.");
+            cedula = in.readLine();
+            out.println();
+            out.println("Ingrese el nombre.");
+            nombre = in.readLine();
+            out.println();
+            out.println("Ingrese el apellido.");
+            apellido = in.readLine();
+            out.println();
+            out.println("Ingrese telefono.");
+            telefono = in.readLine();
+            out.println();
+            out.println("Ingrese direccion.");
+            direccion = in.readLine();
+            out.println();
+
+            miQuere.registrarQuerellante(cedula, direccion, nombre, apellido, telefono);
+            out.println("Se registró correctamente");
+            out.println();
+            
+        }catch (Exception e){
+            out.println(e.getMessage());
+        }
     }
 
  /**
@@ -246,6 +279,34 @@ public static void realizarMovimiento() throws IOException{
             out.println(listaJueces.get(i).getCedula() + " "  + " "+ listaJueces.get(i).getNombre() + "\n");
         }
     } 
+    
+    public static void listarQuere() throws Exception
+    {
+        
+        Querellante quere;
+        String cedula;
+        out.println("Ingrese la cédula.");
+        cedula = in.readLine();
+        out.println();
+        quere = miQuere.buscarObjQuerellante(cedula);
+        
+        out.println("Querellante:");
+        out.println("Identificacion" + " " + " " + "Nombre" + "\n");
+        out.println(quere.getCedula() + " "  + " "+ quere.getNombre() + "\n");
+        
+    }
+    
+    public static void listarSecre() throws Exception
+    {
+        ArrayList<Secretario> listaSecre;
+        listaSecre = miSecre.listarSecretarios();
+        
+        out.println("Secretario registrados");
+        out.println("Identificacion" + " " + " " + "Nombre" + "\n");
+        for(int i = 0; i < listaSecre.size(); i++){
+            out.println(listaSecre.get(i).getCedula() + " "  + " "+ listaSecre.get(i).getNombre() + "\n");
+        }
+    }
 
  /**
  * Método encargado de listar los monedas provenientes de la base de datos
