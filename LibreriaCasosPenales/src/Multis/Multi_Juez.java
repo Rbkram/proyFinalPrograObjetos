@@ -43,12 +43,12 @@ public class Multi_Juez {
        
         ArrayList<Juez> listaJueces =  new ArrayList<>();
         
-        String select = "SELECT * FROM Juez";
+        String select = "SELECT NOMBRE,APELLIDO,TELEFONO,SALA,CEDULA,CLAVE,NOMBRE_USUARIO FROM TPERSONA WHERE TIPO_USUARIO = 'Juez'";
 
         try (ResultSet rs = Conector.getConector().getDatosSQL(select)) {
 
             while (rs.next()) {
-                listaJueces.add(new Juez(rs.getString("nombre"), rs.getString("apellido"), rs.getString("telefono"), rs.getString("sala_pertenece"), rs.getString("cedula"), rs.getString("clave"), rs.getString("usuario")));
+                listaJueces.add(new Juez(rs.getString("NOMBRE"), rs.getString("APELLIDO"), rs.getString("TELEFONO"), rs.getString("SALA"), rs.getString("CEDULA"), rs.getString("CLAVE"), rs.getString("NOMBRE_USUARIO")));
             }
 
             rs.close();

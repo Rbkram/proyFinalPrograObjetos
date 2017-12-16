@@ -59,7 +59,7 @@ public class UI {
     public static void mostarMenu() {
         
         out.println("Seleccione una opción de la siguiente lista:");
-        out.println("1. Registrar Juez.");
+        out.println("1. listar Jueces.");
         out.println("2. listar  clientes.");
         out.println("3. Registrar Cuenta.");
         out.println("4. Listar Cuentas.");
@@ -240,7 +240,7 @@ public static void realizarMovimiento() throws IOException{
         ArrayList<Juez> listaJueces;
         listaJueces = miJuez.listarJueces();
         
-        out.println("Lista de jueces registrados");
+        out.println("Jueces registrados");
         out.println("Identificacion" + " " + " " + "Nombre" + "\n");
         for(int i = 0; i < listaJueces.size(); i++){
             out.println(listaJueces.get(i).getCedula() + " "  + " "+ listaJueces.get(i).getNombre() + "\n");
