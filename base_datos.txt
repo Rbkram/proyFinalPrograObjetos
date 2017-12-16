@@ -1,0 +1,1 @@
+com.microsoft.sqlserver.jdbc.SQLServerDriver,jdbc:sqlserver://DESKTOP-74PHBO7;databaseName=CASOS_PENALES;integratedsecurity = true
