@@ -6,7 +6,6 @@
 package Multis;
 
 import Objetos.Juez;
-import java.sql.SQLException;
 import com.cenfotec.AccesoDatos.*;
 import java.sql.ResultSet;
 import java.util.ArrayList;
