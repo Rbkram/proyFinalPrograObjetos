@@ -43,6 +43,21 @@ public class Gestor_Caso {
             e.getMessage();
         }
     }
+
+    public void registrarHistorial(String numeroCaso, String estado) throws Exception{
+        
+        try{
+            LocalDate fecha = LocalDate.now();
+            Caso casoCorrespondiente;
+            casoCorrespondiente = buscarObjCaso(numeroCaso);
+            String nuevoEstado = estado;
+            
+            new Multi_Caso().registrarNuevoEstado(casoCorrespondiente.getNumeroCaso(), nuevoEstado, fecha);
+        }
+        catch(Exception e){
+            e.getMessage();
+        }
+    }
     
     public Caso buscarObjCaso(String pID) throws Exception{
         
