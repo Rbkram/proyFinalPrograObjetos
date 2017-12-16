@@ -20,12 +20,12 @@ public class Multi_Secretario {
     public Secretario secretarioxID(String pIDUsuario){
         Secretario secreEncontrado = new Secretario();
         
-        String select = "SELECT * FROM Secretario WHERE CEDULA =" + "'" + pIDUsuario + "'";
+        String select = "SELECT CEDULA,NOMBRE_USUARIO FROM TPERSONA WHERE CEDULA =" + "'" + pIDUsuario + "'";
 
         try (ResultSet rs = Conector.getConector().getDatosSQL(select)) {
 
             while (rs.next()) {
-                secreEncontrado = new Secretario(rs.getString("NOMBRE"), rs.getString("APELLIDO"), rs.getString("TELEFONO"), rs.getString("CEDULA"), rs.getString("NOMBRE_USUARIO"), rs.getString("CEDULA"));
+                secreEncontrado = new Secretario(rs.getString("NOMBRE"), rs.getString("APELLIDO"), rs.getString("TELEFONO"), rs.getString("CEDULA"), rs.getString("NOMBRE_USUARIO"), rs.getString("CLAVE"));
             }
 
             rs.close();
@@ -43,12 +43,12 @@ public class Multi_Secretario {
        
         ArrayList<Secretario> listaSecre =  new ArrayList<>();
         
-        String select = "SELECT * FROM Secretario";
+        String select = "SELECT CEDULA,DIRECCION FROM TPERSONA WHERE TIPO_USUARIO = 'Querellante'";
 
         try (ResultSet rs = Conector.getConector().getDatosSQL(select)) {
 
             while (rs.next()) {
-                listaSecre.add(new Secretario(rs.getString("NOMBRE"), rs.getString("APELLIDO"), rs.getString("TELEFONO"), rs.getString("CEDULA"), rs.getString("NOMBRE_USUARIO"), rs.getString("CEDULA")));
+                listaSecre.add(new Secretario(rs.getString("NOMBRE"), rs.getString("APELLIDO"), rs.getString("TELEFONO"), rs.getString("CEDULA"), rs.getString("NOMBRE_USUARIO"), rs.getString("CLAVE")));
             }
 
             rs.close();

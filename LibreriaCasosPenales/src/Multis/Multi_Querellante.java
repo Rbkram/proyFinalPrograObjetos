@@ -17,11 +17,11 @@ import java.sql.ResultSet;
 public class Multi_Querellante {
     
     
-    public void registrarQuerellanteBD(String cedula, String direccion, String nombre, String apellido, String telefono) throws Exception{
+    public void registrarQuerellanteBD(String direccion, String nombre, String apellido, String telefono, String cedula) throws Exception{
         
-        Querellante tmpQuerellante = new Querellante(cedula, direccion, nombre, apellido, telefono);
+        Querellante tmpQuerellante = new Querellante(direccion, nombre, apellido, telefono, cedula);
         String query;
-        query = "insert into Querellante(NOMBRE, APELLIDO, TELEFONO, CEDULA, DIRECCION) values('" + tmpQuerellante.getNombre()+ "' ,'"+ tmpQuerellante.getApellido()+ "' ,'"+ tmpQuerellante.getTelefono()+ "' ,'"+ tmpQuerellante.getCedula() + "' ,'"+ tmpQuerellante.getDireccion()+"')";
+        query = "insert into TPERSONA(NOMBRE, APELLIDO, TELEFONO, CEDULA, DIRECCION) values('" + tmpQuerellante.getNombre()+ "' ,'"+ tmpQuerellante.getApellido()+ "' ,'"+ tmpQuerellante.getTelefono()+ "' ,'"+ tmpQuerellante.getCedula() + "' ,'"+ tmpQuerellante.getDireccion()+"')";
        
         try{
             AccesoBD accesoDatos;
