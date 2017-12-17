@@ -44,7 +44,7 @@ public class Multi_Caso {
         Date fechaSql = java.sql.Date.valueOf(fecha);
         
         String query;
-        query = "insert into THISTORIAL (NUMERO_CASO,FECHA_CAMBIO,ESTADO) values('" + casoCorrespondiente + "' ,'" + nuevoEstado+ "' ,'" + fechaSql + "')";
+        query = "insert into THISTORIAL (NUMERO_CASO,FECHA_CAMBIO,ESTADO) values('" + casoCorrespondiente + "' ,'" + nuevoEstado + "' ,'" + fechaSql + "')";
         try{
             AccesoBD accesoDatos;
             accesoDatos = Conector.getConector();
