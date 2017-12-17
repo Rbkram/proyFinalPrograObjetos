@@ -7,8 +7,22 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="410.0" prefWidth="677.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui_proycasospenales.FXMLDocumentController">
+
+<AnchorPane id="AnchorPane" prefHeight="410.0" prefWidth="677.0" 
+            xmlns="http://javafx.com/javafx/8.0.141" 
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.proyectoVistaInicioSesion.iniciosesionController">
    <children>
       <ImageView fitHeight="418.0" fitWidth="677.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -22,7 +36,7 @@
       </Label>
       <AnchorPane layoutX="344.0" layoutY="33.0" opacity="0.71" prefHeight="356.0" prefWidth="304.0" style="-fx-background-color: #000;">
          <children>
-            <Button layoutX="103.0" layoutY="99.0" mnemonicParsing="false" text="Iniciar sesión" />
+            <Button layoutX="103.0" layoutY="99.0" mnemonicParsing="false" text="Iniciar sesión" fx:id="Aqui va el ID para que le controllador se encargue de redirigir"/>
             <Label layoutX="79.0" layoutY="50.0" text="Juez o secretario" textFill="WHITE">
                <font>
                   <Font size="18.0" />
