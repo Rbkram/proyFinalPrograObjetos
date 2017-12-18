@@ -131,6 +131,7 @@ public class UI {
     public static void regQuerellante() throws IOException{
         
         String direccion,nombre, apellido, telefono, cedula;
+        boolean registrado = false;
         
         try{
             out.println("Ingrese la cédula.");
@@ -149,10 +150,12 @@ public class UI {
             direccion = in.readLine();
             out.println();
 
-            miQuere.registrarQuerellante(direccion, nombre, apellido, telefono, cedula);
-            out.println("Se registró correctamente");
-            out.println();
-            
+            registrado = miQuere.registrarQuerellante(direccion, nombre, apellido, telefono, cedula);
+            if (registrado) {
+               out.println("Se registró correctamente");  
+            } else {
+               out.println("Ocurrió un error en el registro");
+            }
         }catch (Exception e){
             out.println(e.getMessage());
         }
