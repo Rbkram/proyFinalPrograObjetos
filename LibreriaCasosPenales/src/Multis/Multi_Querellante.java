@@ -17,8 +17,9 @@ import java.sql.ResultSet;
 public class Multi_Querellante {
     
     
-    public void registrarQuerellanteBD(String direccion, String nombre, String apellido, String telefono, String cedula) throws Exception{
+    public boolean registrarQuerellanteBD(String direccion, String nombre, String apellido, String telefono, String cedula) throws Exception{
         
+        boolean registrado = false;
         Querellante tmpQuerellante = new Querellante(direccion, nombre, apellido, telefono, cedula);
         String query;
         query = "insert into TPERSONA(NOMBRE, APELLIDO, TELEFONO, CEDULA, DIRECCION) values('" + tmpQuerellante.getNombre()+ "' ,'"+ tmpQuerellante.getApellido()+ "' ,'"+ tmpQuerellante.getTelefono()+ "' ,'"+ tmpQuerellante.getCedula() + "' ,'"+ tmpQuerellante.getDireccion()+"')";
@@ -27,9 +28,12 @@ public class Multi_Querellante {
             AccesoBD accesoDatos;
             accesoDatos = Conector.getConector();
             accesoDatos.ejecutarSQL(query);
+            registrado = true;
         }catch(Exception err){
-            throw err;
+            System.out.println(err);
+            System.out.println(err.getMessage());
         }
+        return registrado;
     }
   
     public Querellante querellantexID(String pID) throws Exception{
