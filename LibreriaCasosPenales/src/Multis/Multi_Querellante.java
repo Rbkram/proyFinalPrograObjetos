@@ -28,7 +28,8 @@ public class Multi_Querellante {
             accesoDatos = Conector.getConector();
             accesoDatos.ejecutarSQL(query);
         }catch(Exception err){
-            throw err;
+            System.out.println(err);
+            System.out.println(err.getMessage());
         }
     }
   

@@ -149,7 +149,7 @@ public class UI {
             direccion = in.readLine();
             out.println();
 
-            miQuere.registrarQuerellante(cedula, direccion, nombre, apellido, telefono);
+            miQuere.registrarQuerellante(direccion, nombre, apellido, telefono, cedula);
             out.println("Se registró correctamente");
             out.println();
             
