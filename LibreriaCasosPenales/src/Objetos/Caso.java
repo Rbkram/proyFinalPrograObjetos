@@ -16,6 +16,7 @@ public class Caso {
     private String numeroCaso;
     private String descripcionCaso;
     private Querellante querellante_aCargo;
+    private String querellante_aCargo_Id;
     private Juez juez_nombrado;
     private String estado;
     private Date fecha;
@@ -34,7 +35,23 @@ public class Caso {
         this.estado = estado;
         this.fecha = fecha;
     }
+    
+    public Caso(String numeroCaso, String descripcionCaso, String querellante_aCargo, String estado) {
+        this.numeroCaso = numeroCaso;
+        this.descripcionCaso = descripcionCaso;
+        this.querellante_aCargo_Id = querellante_aCargo;
+        this.estado = estado;
+    }    
 
+    public String getQuerellante_aCargo_Id() {
+        return querellante_aCargo_Id;
+    }
+
+    public void setQuerellante_aCargo_Id(String querellante_aCargo_Id) {
+        this.querellante_aCargo_Id = querellante_aCargo_Id;
+    }
+
+    
     public String getNumeroCaso() {
         return numeroCaso;
     }

@@ -29,17 +29,18 @@ public class Multi_Caso {
         
         Caso tmpCaso = new Caso(numeroCaso, descripcionCaso, querellante_aCargo, juez_nombrado, estado, fechaSql);
         String query;
-        query = "insert into TCASO (NUMERO, DESCRIPCION, QUERELLANTE, JUEZ_NOMBRADO, ESTADO, FECHA) values('" + tmpCaso.getNumeroCaso() + "' ,'" + tmpCaso.getDescripcionCaso()+ "' ,'" + tmpCaso.getQuerellante_aCargo()+ "' ,'" + tmpCaso.getJuez_nombrado() + "' ,'" + tmpCaso.getEstado() + "' ,'" + tmpCaso.getFecha()+"')";
+        query = "insert into TCASO (NUMERO, DESCRIPCION, QUERELLANTE, JUEZ_NOMBRADO, ESTADO, FECHA) values('" + tmpCaso.getNumeroCaso() + "' ,'" + tmpCaso.getDescripcionCaso()+ "' ,'" + tmpCaso.getQuerellante_aCargo().getCedula()+ "' ,'" + tmpCaso.getJuez_nombrado().getCedula() + "' ,'" + tmpCaso.getEstado() + "' ,'" + fechaSql +"')";
         try{
             AccesoBD accesoDatos;
             accesoDatos = Conector.getConector();
             accesoDatos.ejecutarSQL(query);
         }catch(Exception err){
-            throw err;
+            System.out.println(err);
+            System.out.println(err.getMessage());
         }
     }
 
-    public void registrarNuevoEstado(String casoCorrespondiente, String nuevoEstado, LocalDate fecha) throws Exception{
+    public void registrarNuevoEstadoHistorial(String casoCorrespondiente, String nuevoEstado, LocalDate fecha) throws Exception{
         
         Date fechaSql = java.sql.Date.valueOf(fecha);
         
@@ -50,7 +51,8 @@ public class Multi_Caso {
             accesoDatos = Conector.getConector();
             accesoDatos.ejecutarSQL(query);
         }catch(Exception err){
-            throw err;
+            System.out.println(err);
+            System.out.println(err.getMessage());
         }
     }
     
@@ -59,18 +61,19 @@ public class Multi_Caso {
        
         ArrayList<Caso> casos =  new ArrayList<>();
         
-        String select = "SELECT * FROM Caso WHERE juez_nombrado =" + "'" + pIDJuez + "'";
+        String select = "SELECT NUMERO,DESCRIPCION,QUERELLANTE,JUEZ_NOMBRADO,ESTADO FROM TCASO WHERE JUEZ_NOMBRADO =" + "'" + pIDJuez + "'";
 
         try (ResultSet rs = Conector.getConector().getDatosSQL(select)) {
-
+            //String numeroCaso, String descripcionCaso, Querellante querellante_aCargo, Juez juez_nombrado, String estado, Date fecha
             while (rs.next()) {
-                // casos.add(new Caso(rs.getString("numeroCaso"), rs.getString("descripcionCaso"), rs.getString("querellante_aCargo"), rs.getString("juez_nombrado"), rs.getString("estado"), rs.getDate("fechaSql")));
+                casos.add(new Caso(rs.getString("NUMERO"),rs.getString("DESCRIPCION"),rs.getString("QUERELLANTE"), rs.getString("ESTADO")));
             }
 
             rs.close();
-            // return Caso;
+            return casos;
 
         }catch(Exception err){
+                
             System.out.println(err);
             System.out.println(err.getMessage());
         }
@@ -127,12 +130,19 @@ public class Multi_Caso {
     
     public void cambiarEstadoCaso(String idCaso, LocalDate fechaCambio, String EstadoCambio) throws Exception{
         
-        Caso casoxMod;
         Date fechaSql = java.sql.Date.valueOf(fechaCambio);
-        casoxMod = casoxID(idCaso);
-        casoxMod.setEstado(EstadoCambio);
-        ArrayList<Historial_Caso> historialActualizado;
-        //Aqui hay que ver como se va a hacer el cmabio en el historial del estado
+        
+        String query;// UPDATE TCASO SET ESTADO = 'Recibido', FECHA = '1/16/2007' WHERE NUMERO = '123'
+        query = "UPDATE TCASO SET ESTADO =" + "'" + EstadoCambio + "'" + ", FECHA =" + "'" + fechaSql + "'" + "WHERE NUMERO =" + "'" + idCaso + "'";
+        try{
+            AccesoBD accesoDatos;
+            accesoDatos = Conector.getConector();
+            accesoDatos.ejecutarSQL(query);
+            registrarNuevoEstadoHistorial(idCaso, EstadoCambio, fechaCambio);
+        }catch(Exception err){
+            System.out.println(err);
+            System.out.println(err.getMessage());
+        }
         
     }
     

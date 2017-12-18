@@ -34,6 +34,7 @@ public class UI {
     static Gestor_Juez miJuez = new Gestor_Juez();
     static Gestor_Querellante miQuere = new Gestor_Querellante();
     static Gestor_Secretario miSecre = new Gestor_Secretario();
+    static Gestor_Caso miCaso = new Gestor_Caso();
 
 /**
  * @param args clase principal para inciar el código
@@ -62,11 +63,11 @@ public class UI {
         
         out.println("Seleccione una opción de la siguiente lista:");
         out.println("1. listar Jueces.");
-        out.println("2. listar  clientes.");
-        out.println("3. Registrar Cuenta.");
-        out.println("4. Listar Cuentas.");
-        out.println("5. Realizar Movimiento Bancario.");
-        out.println("6. Listar Movimiento Bancarios.");
+        out.println("2. registrar querellante.");
+        out.println("3. Buscar querellante.");
+        out.println("4. Ver Secretario.");
+        out.println("5. Registrar Caso.");
+        out.println("6. Modificar Estado caso.");
         out.println("7. Salir.");
     }
  /**
@@ -100,7 +101,7 @@ public class UI {
             break;
             
             case 3:
-                listarQuere(); 
+                buscarQuerellante(); 
             break;
             
             case 4:
@@ -108,11 +109,11 @@ public class UI {
             break;
             
             case 5:
-               // realizarMovimiento();
+               registrarCaso();
             break;
             
             case 6:
-               // listarMovimientosBancarios();
+               modificarEstadoCaso();
             break;
             
             case 7:
@@ -160,117 +161,60 @@ public class UI {
             out.println(e.getMessage());
         }
     }
+    
 
- /**
- * Método encargado de registrar clientes
- * @see Asociación con el GestorCliente
- */  
-/*    
-    public static void registrarCliente() throws IOException, Exception
-    {
-        String identificacion;
-        String nombre_completo;
-        String usuario;
-        String clave;
-        out.println("Ingrese el numero de identificacion de el cliente:");
-        identificacion = in.readLine();
-        out.println("Ingrese el nombre completo del cliente:");
-        nombre_completo = in.readLine();
-        out.println("Ingrese un numbre de usuario para el cliente:");
-        usuario = in.readLine();
-        out.println("Ingrese la clave:");
-        clave = in.readLine();
-        out.println();
-        miCliente.registrarCliente(identificacion, nombre_completo, clave, usuario);
-    }   
-*/ 
- /**
- * Método encargado de registrar un nueva Cuenta
- * @see Asociación con el GestorCliente
- */   
-/*    
-    public static void registrarCuenta() throws IOException{
+    public static void registrarCaso() throws IOException{
         
-        Cliente duennoCuenta;
-        Moneda tipoMon;
-        String numeroCuenta, cedula;
-        double saldo;
-        String opcMoneda;
-        ArrayList<Moneda> monedas = new ArrayList<>();
+        String numeroCaso, descripcion, idQuerellante;
+        Querellante quere;
+        boolean registrado = false;
         
         try{
-            listarClientes();
-            out.println("Ingrese la cédula del dueño de la cuenta");
-            cedula = in.readLine();
-            duennoCuenta = miCliente.buscarObjCliente(cedula);
+            out.println("Ingrese el numero del caso.");
+            numeroCaso = in.readLine();
             out.println();
-            listarMonedas();
-            // out.println(monedas);
-            out.println("Digite el nombre de la moneda");
-            opcMoneda = in.readLine();
-            tipoMon = miMoneda.getMonedaPorId(opcMoneda);
-            out.println();
-            out.println("Ingrese el número de cuenta");
-            numeroCuenta = in.readLine();
-            out.println();
-            out.println("Ingrese el inicial saldo");
-            saldo = Double.parseDouble(in.readLine());
+            out.println("Ingrese la descripcion del caso.");
+            descripcion = in.readLine();
             out.println();
             
-            miCuenta.registrarCuenta(numeroCuenta, duennoCuenta, saldo, tipoMon);
-            
+            out.println("Ingrese la cédula del querellante por asignar.");
+            idQuerellante = in.readLine();
+            out.println();
+            quere = miQuere.buscarObjQuerellante(idQuerellante);
+
+            registrado = miCaso.ingresarCaso(numeroCaso, descripcion, quere.getCedula());
+            if (registrado) {
+               out.println("Se registró correctamente");  
+            } else {
+               out.println("Ocurrió un error en el registro");
+            }
         }catch (Exception e){
             out.println(e.getMessage());
         }
+    } 
+    
+    public static void modificarEstadoCaso() throws IOException{
         
-    }
-*/    
-/* 
-public static void realizarMovimiento() throws IOException{
-        
-        int tipo;
-        double monto;
-        LocalDate fecha;
-        String nombreMoneda, numCuenta, cod;
-        Moneda moneda;
-        Cuenta cuentaAsignada;
+        String idCaso, nuevoEstado, idJuez;
         
         try{
-            out.println("Seleccione el tipo de moviento que desea realizar");
-            out.println("1 - Depósito");
-            out.println("2 - Transferencia");
-            out.println("3 - Transferencia a terceros");
-            out.println();
-            tipo = Integer.parseInt(in.readLine());
-            listarMonedas();
-            out.println("Seleccione el tipo de moneda para el deposito");
-            out.println();
-            nombreMoneda = in.readLine();
-            moneda = miMoneda.getMonedaPorId(nombreMoneda);
-            out.println();
-            listarCuentasPersonales();
-            out.println("Digite el numero de cuenta");
-            numCuenta = in.readLine();
-            cuentaAsignada = miCuenta.getCuentaPorId(numCuenta);
-            out.println("Ingrese el monto");
-            monto = Double.parseDouble(in.readLine());
-            cod = "" + CodigoDelMovimiento++;
-            fecha = LocalDate.now();
-
-            miMovimiento.registrarMovimiento(tipo, monto, fecha, cod, moneda, cuentaAsignada);
-            out.println("Se registró correctamente");
-            out.println();
             
+            out.println("Ingrese su cedula.");
+            idJuez = in.readLine();
+            listarCasosJuez(idJuez);
+            out.println("Ingrese el numero de caso a modificar.");
+            idCaso = in.readLine();
+            out.println("Ingrese el nuevo estado.");
+            nuevoEstado = in.readLine();
+            
+            miCaso.modificarEstado(idCaso, nuevoEstado);
+            out.println("Modificación realizada");  
+
         }catch (Exception e){
             out.println(e.getMessage());
-        } 
-    }    
-*/ 
- /**
- * Método encargado de listar los clientes
-     * @throws java.lang.Exception
- * @see Asociación con el GestorCliente
- */
+        }
+    }  
+    
     public static void listarJueces() throws Exception
     {
         ArrayList<Juez> listaJueces;
@@ -281,14 +225,28 @@ public static void realizarMovimiento() throws IOException{
         for(int i = 0; i < listaJueces.size(); i++){
             out.println(listaJueces.get(i).getCedula() + " "  + " "+ listaJueces.get(i).getNombre() + "\n");
         }
+    }    
+
+    public static void listarCasosJuez(String idJuez) throws Exception
+    {
+        ArrayList<Caso> listaCasos;
+        listaCasos = miCaso.listarCasosJuez(idJuez);
+        Querellante quere;
+        
+        out.println("Casos del juez");
+        out.println("Numero Caso" + " " + " " + "Querellante" + "\n");
+        for(int i = 0; i < listaCasos.size(); i++){
+            quere = miQuere.buscarObjQuerellante(listaCasos.get(i).getQuerellante_aCargo_Id());
+            out.println(listaCasos.get(i).getNumeroCaso() + " "  + " "+ quere.getNombre() + "\n");
+        }
     } 
     
-    public static void listarQuere() throws Exception
+    public static void buscarQuerellante() throws Exception
     {
         
         Querellante quere;
         String cedula;
-        out.println("Ingrese la cédula.");
+        out.println("Ingrese la cédula del querellante.");
         cedula = in.readLine();
         out.println();
         quere = miQuere.buscarObjQuerellante(cedula);
