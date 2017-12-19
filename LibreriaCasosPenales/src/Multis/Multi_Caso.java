@@ -31,6 +31,7 @@ public class Multi_Caso {
         String query;
         query = "insert into TCASO (NUMERO, DESCRIPCION, QUERELLANTE, JUEZ_NOMBRADO, ESTADO, FECHA) values('" + tmpCaso.getNumeroCaso() + "' ,'" + tmpCaso.getDescripcionCaso()+ "' ,'" + tmpCaso.getQuerellante_aCargo().getCedula()+ "' ,'" + tmpCaso.getJuez_nombrado().getCedula() + "' ,'" + tmpCaso.getEstado() + "' ,'" + fechaSql +"')";
         try{
+            registrarNuevoEstadoHistorial(numeroCaso, estado, fecha);
             AccesoBD accesoDatos;
             accesoDatos = Conector.getConector();
             accesoDatos.ejecutarSQL(query);
@@ -45,7 +46,7 @@ public class Multi_Caso {
         Date fechaSql = java.sql.Date.valueOf(fecha);
         
         String query;
-        query = "insert into THISTORIAL (NUMERO_CASO,FECHA_CAMBIO,ESTADO) values('" + casoCorrespondiente + "' ,'" + nuevoEstado + "' ,'" + fechaSql + "')";
+        query = "insert into THISTORIAL (NUMERO_CASO,FECHA_CAMBIO,ESTADO) values('" + casoCorrespondiente + "' ,'" + fechaSql + "' ,'" + nuevoEstado  + "')";
         try{
             AccesoBD accesoDatos;
             accesoDatos = Conector.getConector();
@@ -137,8 +138,8 @@ public class Multi_Caso {
         try{
             AccesoBD accesoDatos;
             accesoDatos = Conector.getConector();
-            accesoDatos.ejecutarSQL(query);
             registrarNuevoEstadoHistorial(idCaso, EstadoCambio, fechaCambio);
+            accesoDatos.ejecutarSQL(query);
         }catch(Exception err){
             System.out.println(err);
             System.out.println(err.getMessage());
