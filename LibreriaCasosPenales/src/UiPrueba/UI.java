@@ -68,7 +68,8 @@ public class UI {
         out.println("4. Ver Secretario.");
         out.println("5. Registrar Caso.");
         out.println("6. Modificar Estado caso.");
-        out.println("7. Salir.");
+        out.println("7. Listar Casos de Querellante.");        
+        out.println("8. Salir.");
     }
  /**
  * Método encargado de procesar la opción elegida
@@ -115,8 +116,12 @@ public class UI {
             case 6:
                modificarEstadoCaso();
             break;
-            
+
             case 7:
+               listarCasosQuerellante();
+            break;
+            
+            case 8:
                 out.println("Gracias por usar nuestro sistema");
                 salir = true;
             break;
@@ -238,6 +243,22 @@ public class UI {
         for(int i = 0; i < listaCasos.size(); i++){
             quere = miQuere.buscarObjQuerellante(listaCasos.get(i).getQuerellante_aCargo_Id());
             out.println(listaCasos.get(i).getNumeroCaso() + " "  + " "+ quere.getNombre() + "\n");
+        }
+    } 
+
+    public static void listarCasosQuerellante() throws Exception
+    {
+        String cedulaQuerellante;
+        ArrayList<Caso> listaCasos;
+        out.println("Ingrese la cedula del querellante.");
+        cedulaQuerellante = in.readLine();
+        out.println();
+        listaCasos = miCaso.listarCasosQuerellante(cedulaQuerellante);
+        
+        out.println("Casos del querellante");
+        out.println("Numero Caso" + " " + " " + "Estado" + "\n");
+        for(int i = 0; i < listaCasos.size(); i++){
+            out.println(listaCasos.get(i).getNumeroCaso() + " "  + " "+ listaCasos.get(i).getEstado()  + "\n");
         }
     } 
     

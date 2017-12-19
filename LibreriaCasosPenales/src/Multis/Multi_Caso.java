@@ -87,16 +87,16 @@ public class Multi_Caso {
        
         ArrayList<Caso> casos =  new ArrayList<>();
         
-        String select = "SELECT * FROM Caso WHERE querellante_aCargo =" + "'" + pIDQuerellante + "'";
+        String select = "SELECT NUMERO,DESCRIPCION,JUEZ_NOMBRADO,ESTADO FROM TCASO WHERE QUERELLANTE =" + "'" + pIDQuerellante + "'";
 
         try (ResultSet rs = Conector.getConector().getDatosSQL(select)) {
 
             while (rs.next()) {
-                // casos.add(new Caso(rs.getString("numeroCaso"), rs.getString("descripcionCaso"), rs.getString("querellante_aCargo"), rs.getString("juez_nombrado"), rs.getString("estado"), rs.getDate("fechaSql")));
+                casos.add(new Caso(rs.getString("NUMERO"),rs.getString("DESCRIPCION"), rs.getString("ESTADO")));
             }
 
             rs.close();
-            // return Caso;
+            return casos;
 
         }catch(Exception err){
             System.out.println(err);

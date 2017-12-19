@@ -41,7 +41,13 @@ public class Caso {
         this.descripcionCaso = descripcionCaso;
         this.querellante_aCargo_Id = querellante_aCargo;
         this.estado = estado;
-    }    
+    }
+
+    public Caso(String numeroCaso, String descripcionCaso, String estado) {
+        this.numeroCaso = numeroCaso;
+        this.descripcionCaso = descripcionCaso;
+        this.estado = estado;
+    }     
 
     public String getQuerellante_aCargo_Id() {
         return querellante_aCargo_Id;
