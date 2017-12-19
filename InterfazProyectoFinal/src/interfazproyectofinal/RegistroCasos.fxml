@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.Pane?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="611.0" prefWidth="677.0" style="-fx-background-color: #fff;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.proyectoRegCaso.RegistrarCasoController">
-   <children>
+<AnchorPane id="AnchorPane" prefHeight="200.0" prefWidth="320.0" xmlns:fx="http://javafx.com/fxml" fx:controller="interfazproyectofinal.RegistroCasosController">
+
+       <children>
       <Pane layoutX="43.0" layoutY="340.0" prefHeight="200.0" prefWidth="588.0" style="-fx-background-color: #f4f5f7;" />
       <Pane prefHeight="53.0" prefWidth="677.0" style="-fx-background-color: #f4f5f7;">
          <children>
@@ -18,7 +20,7 @@
                </font>
             </Label>
             <Label layoutX="131.0" layoutY="19.0" prefHeight="17.0" prefWidth="234.0" text="Nombre del secretario aparece aqui" textFill="#535353" />
-            <Button layoutX="563.0" layoutY="15.0" mnemonicParsing="false" style="-fx-background-color: #509cfc;" text="Cerrar sesión" textFill="WHITE">
+            <Button layoutX="563.0" layoutY="15.0" mnemonicParsing="false" style="-fx-background-color: #509cfc;" text="Cerrar sesión" onAction="#salirVentana" textFill="WHITE">
                <font>
                   <Font name="System Bold Italic" size="12.0" />
                </font>
@@ -36,7 +38,7 @@
       <TextField fx:id="txtNombreCaso" layoutX="213.0" layoutY="138.0" prefHeight="27.0" prefWidth="364.0" />
       <TextField fx:id="txtDescripcion" layoutX="213.0" layoutY="176.0" prefHeight="69.0" prefWidth="364.0" />
       <TextField fx:id="txtCedulaQuerellante" layoutX="213.0" layoutY="255.0" prefHeight="27.0" prefWidth="296.0" />
-      <Button fx:id="btnBuscarQuerellante" layoutX="523.0" layoutY="257.0" mnemonicParsing="false" onAction="#buscarQuerellantexId" style="-fx-background-color: #fdaa29;" text="Buscar" textFill="WHITE">
+      <Button fx:id="btnBuscarQuerellante" onAction="#buscarQuerellantexId"  layoutX="523.0" layoutY="257.0" mnemonicParsing="false"  style="-fx-background-color: #fdaa29;" text="Buscar" textFill="WHITE">
          <font>
             <Font name="Roboto Bold" size="12.0" />
          </font></Button>
@@ -58,7 +60,7 @@
          <font>
             <Font name="Roboto Bold" size="12.0" />
          </font></Button>
-      <Button fx:id="btnRegistrarCaso" layoutX="278.0" layoutY="557.0" mnemonicParsing="false" onAction="#registrarCaso" prefHeight="29.0" prefWidth="118.0" style="-fx-background-color: #0d56c9;" text="Ingresar caso" textFill="WHITE">
+      <Button fx:id="btnRegistrarCaso" layoutX="278.0" layoutY="557.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="118.0" style="-fx-background-color: #0d56c9;" text="Ingresar caso" textFill="WHITE">
          <font>
             <Font name="Roboto Bold" size="12.0" />
          </font></Button>
@@ -67,3 +69,4 @@
       <Label fx:id="lbConfiQuerellante" layoutX="217.0" layoutY="306.0" />
    </children>
 </AnchorPane>
+

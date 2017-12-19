@@ -33,6 +33,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
-public class inicioSesionController {
+// public class inicioSesionController {
     
-}
+// }

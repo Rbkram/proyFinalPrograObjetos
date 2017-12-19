@@ -36,10 +36,10 @@ import javafx.scene.text.Text;
 
 
 
-
-// import CAPA LOGICA
 // import el fxml
 // import package al que queres ir para redirigir
+
+import Gestores.*;
 public class loginController {
     /* void login(){
         String username = rs.getString() ESTO LLAMA A LO QUE ESTA DENTRO DEL INPUT

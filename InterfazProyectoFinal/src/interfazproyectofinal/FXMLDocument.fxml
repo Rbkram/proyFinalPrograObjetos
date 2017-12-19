@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="200" prefWidth="320" xmlns:fx="http://javafx.com/fxml" fx:controller="interfazproyectofinal.FXMLDocumentController">
+       <children>
+      <Pane prefHeight="99.0" prefWidth="600.0" style="-fx-background-color: #f4f5f7;" />
+      <AnchorPane layoutX="138.0" layoutY="136.0" prefHeight="233.0" prefWidth="319.0" style="-fx-border-color: #0d56c9; -fx-border-radius: 5;">
+         <children>
+            <Label layoutX="126.0" layoutY="26.0" text="Usuario" textFill="#535353">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="111.0" layoutY="96.0" text="Contraseña" textFill="#535353">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <TextField layoutX="58.0" layoutY="57.0" prefHeight="27.0" prefWidth="203.0" />
+            <PasswordField layoutX="58.0" layoutY="125.0" prefHeight="27.0" prefWidth="203.0" />
+            <Button layoutX="91.0" layoutY="178.0" mnemonicParsing="false" onAction="#nuevaVentana" prefHeight="29.0" prefWidth="140.0" style="-fx-background-color: #0d56c9;" text="Ingresar" textFill="WHITE">
+               <font>
+                  <Font name="System Bold Italic" size="12.0" />
+               </font></Button>
+         </children>
+      </AnchorPane>
+      <Label layoutX="213.0" layoutY="36.0" text="INICIAR SESIÓN" textFill="#263957">
+         <font>
+            <Font name="Roboto Bold" size="24.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
+
