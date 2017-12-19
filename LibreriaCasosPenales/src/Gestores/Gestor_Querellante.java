@@ -14,14 +14,17 @@ import Multis.*;
  */
 public class Gestor_Querellante {
     
-    public void registrarQuerellante(String cedula, String direccion, String nombre, String apellido, String telefono) throws Exception{
+    public boolean registrarQuerellante(String cedula, String direccion, String nombre, String apellido, String telefono) throws Exception{
         
+        boolean registrado = false;
         try{
             new Multi_Querellante().registrarQuerellanteBD(cedula, direccion, nombre, apellido, telefono);
+            registrado = true;
         }
         catch(Exception e){
             e.getMessage();
         }
+        return registrado;
     }
     
     public Querellante buscarObjQuerellante(String pID) throws Exception{

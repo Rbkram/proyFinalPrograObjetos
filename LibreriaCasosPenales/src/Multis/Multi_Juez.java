@@ -48,7 +48,14 @@ public class Multi_Juez {
         try (ResultSet rs = Conector.getConector().getDatosSQL(select)) {
 
             while (rs.next()) {
-                listaJueces.add(new Juez(rs.getString("NOMBRE"), rs.getString("APELLIDO"), rs.getString("TELEFONO"), rs.getString("SALA"), rs.getString("CEDULA"), rs.getString("CLAVE"), rs.getString("NOMBRE_USUARIO")));
+                listaJueces.add(new Juez(
+                        rs.getString("SALA"),
+                        rs.getString("CLAVE"),
+                        rs.getString("NOMBRE_USUARIO"),                        
+                        rs.getString("NOMBRE"), 
+                        rs.getString("APELLIDO"), 
+                        rs.getString("TELEFONO"),
+                        rs.getString("CEDULA")));
             }
 
             rs.close();
