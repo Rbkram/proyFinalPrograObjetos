@@ -7,6 +7,7 @@ package Objetos;
 
 import java.sql.Date;
 import java.util.ArrayList;
+import javafx.beans.property.SimpleStringProperty;
 /**
  *
  * @author Becky
@@ -20,6 +21,8 @@ public class Caso {
     private Juez juez_nombrado;
     private String estado;
     private Date fecha;
+    private  SimpleStringProperty identificadorCaso;
+    private  SimpleStringProperty estadoCaso;
 
     public Caso() {
         this.numeroCaso = "";
@@ -47,6 +50,11 @@ public class Caso {
         this.numeroCaso = numeroCaso;
         this.descripcionCaso = descripcionCaso;
         this.estado = estado;
+    } 
+
+    public Caso(String numeroCaso, String estado) {
+        this.identificadorCaso = new SimpleStringProperty(numeroCaso);
+        this.estadoCaso = new SimpleStringProperty(estado);
     }     
 
     public String getQuerellante_aCargo_Id() {
@@ -106,6 +114,24 @@ public class Caso {
         this.fecha = fecha;
     }
 
+    public SimpleStringProperty getIdentificadorCaso() {
+        return identificadorCaso;
+    }
+
+    public void setIdentificadorCaso(SimpleStringProperty identificadorCaso) {
+        this.identificadorCaso = identificadorCaso;
+    }
+
+    public SimpleStringProperty getEstadoCaso() {
+        return estadoCaso;
+    }
+
+    public void setEstadoCaso(SimpleStringProperty estadoCaso) {
+        this.estadoCaso = estadoCaso;
+    }
+
+    
+    
     @Override
     public String toString() {
         return "Caso{" + "numeroCaso=" + numeroCaso + ", descripcionCaso=" + descripcionCaso + ", querellante_aCargo=" + querellante_aCargo + ", juez_nombrado=" + juez_nombrado + ", estado=" + estado + ", fecha=" + fecha + '}';

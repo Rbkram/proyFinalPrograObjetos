@@ -13,6 +13,7 @@ import javafx.fxml.Initializable;
 import javafx.stage.Stage;
 import Gestores.*;
 import Objetos.*;
+import static java.lang.System.out;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 /**
@@ -28,7 +29,7 @@ public class RegistroCasosController implements Initializable {
     
 
     @FXML
-    private TextField txtNombreCaso;
+    private TextField txtNumeroCaso;
     
     @FXML
     private javafx.scene.control.TextField txtDescripcion;
@@ -36,7 +37,7 @@ public class RegistroCasosController implements Initializable {
     @FXML
     private javafx.scene.control.TextField txtCedulaQuerellante;
     
-    @FXML private Label lbConfiQuerellante, lbVerificacion;
+    @FXML private Label lbConfiQuerellante, lbVerificacion, txtConfirmacion;
     
     public void setStagePrincipal(Stage stagePrincipal) {
         this.stagePrincipal = stagePrincipal;
@@ -54,7 +55,25 @@ public class RegistroCasosController implements Initializable {
         } else {
           lbConfiQuerellante.setText(querellanteEncontrado.getNombre());
         }
-    }      
+    } 
+    
+    @FXML private void registrarCaso() throws Exception{
+        
+        Querellante quere;
+        boolean registrado = false;
+        
+        try{
+
+           registrado = gestorCaso.ingresarCaso(txtNumeroCaso.getText(), txtDescripcion.getText(), txtCedulaQuerellante.getText());
+            if (registrado) {
+              txtConfirmacion.setText("Caso registrado correctamente");  
+            } else {
+             txtConfirmacion.setText("Datos incorrectos, por favor ingréselos nuevamente"); 
+            }
+        }catch (Exception e){
+            out.println(e.getMessage());
+        }
+    }     
     
     @FXML
     private void salirVentana(ActionEvent event) {

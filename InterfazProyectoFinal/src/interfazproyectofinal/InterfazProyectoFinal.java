@@ -13,7 +13,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-
+import Objetos.*;
+import static java.lang.System.out;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 /**
  *
  * @author Olman
@@ -44,8 +47,45 @@ public class InterfazProyectoFinal extends Application {
         } catch (IOException e) {
         }
     }
+    
 
-    public void mostrarVentanaSecundaria() {
+    public void vistaJuez() {
+        try {
+            FXMLLoader loader = new FXMLLoader(InterfazProyectoFinal.class.getResource("juez.fxml"));
+            AnchorPane ventanaDos = (AnchorPane) loader.load();
+            Stage ventana = new Stage();
+            ventana.setTitle("Venta Dos");
+            ventana.initOwner(stagePrincipal);
+            Scene scene = new Scene(ventanaDos);
+            ventana.setScene(scene);
+            JuezController controller = loader.getController();
+            controller.setStagePrincipal(ventana);
+            ventana.show();
+
+        } catch (Exception e) {
+            out.println(e.getMessage());
+        }   
+    }    
+    
+     public void vistaQuerellante() {
+        try {
+            FXMLLoader loader = new FXMLLoader(InterfazProyectoFinal.class.getResource("querellante.fxml"));
+            AnchorPane ventanaDos = (AnchorPane) loader.load();
+            Stage ventana = new Stage();
+            ventana.setTitle("Venta Dos");
+            ventana.initOwner(stagePrincipal);
+            Scene scene = new Scene(ventanaDos);
+            ventana.setScene(scene);
+            QuerellanteController controller = loader.getController();
+            controller.setStagePrincipal(ventana);
+            ventana.show();
+
+        } catch (Exception e) {
+            out.println(e.getMessage());
+        }   
+    }     
+    
+    public void mostrarRegistrarCasos() {
         try {
             FXMLLoader loader = new FXMLLoader(InterfazProyectoFinal.class.getResource("RegistroCasos.fxml"));
             AnchorPane ventanaDos = (AnchorPane) loader.load();
@@ -60,7 +100,25 @@ public class InterfazProyectoFinal extends Application {
 
         } catch (Exception e) {
         }   
-    } 
+    }
+    
+    public void vistaLogin() {
+        try {
+            FXMLLoader loader = new FXMLLoader(InterfazProyectoFinal.class.getResource("inicioSesion.fxml"));
+            AnchorPane ventanaTres = (AnchorPane) loader.load();
+            Stage ventana = new Stage();
+            ventana.setTitle("Venta Tres");
+            ventana.initOwner(stagePrincipal);
+            Scene scene = new Scene(ventanaTres);
+            ventana.setScene(scene);
+            InicioSesionController controller = loader.getController();
+            controller.setStagePrincipal(ventana);
+            ventana.show();
+
+        } catch (Exception e) {
+        }   
+    }    
+     
     public static void main(String[] args) {
         launch(args);
     }    

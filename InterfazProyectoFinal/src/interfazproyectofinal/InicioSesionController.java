@@ -5,25 +5,27 @@
  */
 package interfazproyectofinal;
 
-import java.awt.Button;
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import sun.security.util.Password;
 
 /**
+ * FXML Controller class
  *
  * @author Olman
  */
-public class FXMLDocumentController implements Initializable {
-    
-    private InterfazProyectoFinal ProgramaPrincipal;
-    
+public class InicioSesionController implements Initializable {
+    private Stage stagePrincipal;
+    FXMLDocumentController rooter = new FXMLDocumentController(); 
+    /**
+     * Initializes the controller class.
+     */
     @FXML 
     private Label txtConfirmacion;
 
@@ -31,57 +33,20 @@ public class FXMLDocumentController implements Initializable {
     private TextField txtNombreUsuario; 
     
     @FXML 
-    PasswordField txtContrasenna = new PasswordField ();     
-    
-
-    @FXML
-    private void mostrarLogin(ActionEvent event) {
-        ProgramaPrincipal.vistaLogin();
-    }   
-    
-    
-    @FXML
-    private void mostrarRegistrarCasos(ActionEvent event) {
-        ProgramaPrincipal.mostrarRegistrarCasos();
+    PasswordField txtContrasenna = new PasswordField (); 
+   
+    public void setStagePrincipal(Stage stagePrincipal) {
+        this.stagePrincipal = stagePrincipal;
     }
     
-    private void mostrarRegistrarCasosSinParametro() {
-        ProgramaPrincipal.mostrarRegistrarCasos();
-    }    
-    
-    @FXML
-    private void mostrarVistaQuerellante(ActionEvent event) {
-        ProgramaPrincipal.vistaQuerellante();
-    }    
-
-    @FXML
-    private void mostrarVistaJuez(ActionEvent event) {
-        ProgramaPrincipal.vistaJuez();
-    } 
-    
-    private void mostrarVistaJuezSinParametro() {
-        ProgramaPrincipal.vistaJuez();
-    }    
-    
-    public void setProgramaPrincipal(InterfazProyectoFinal ProgramaPrincipal) {
-        this.ProgramaPrincipal = ProgramaPrincipal;
-    }
- 
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }  
-    
-    @FXML private void redireccionar () {
+    /*@FXML private void redireccionar () {
        String userName = txtNombreUsuario.getText();
        int password = 1910;
         switch(userName) {
 
         case "oldMan":
             if (password == 1910){
-                txtNombreUsuario.setText("");
-                txtContrasenna.clear();
-                mostrarVistaJuezSinParametro();
+                rooter.showVistaJuez();
             }else {
                txtConfirmacion.setText("Datos incorrectos, inténtelo nuevamente");
                txtNombreUsuario.setText("");
@@ -91,9 +56,7 @@ public class FXMLDocumentController implements Initializable {
 
         case "JoMan":
             if (password == 1910){
-                txtNombreUsuario.setText("");
-                txtContrasenna.clear();
-                mostrarVistaJuezSinParametro();
+                rooter.showVistaJuez();
             } else {
                txtConfirmacion.setText("Datos incorrectos, inténtelo nuevamente");
                txtNombreUsuario.setText("");
@@ -103,9 +66,7 @@ public class FXMLDocumentController implements Initializable {
         
         case "edSan":
             if (password == 1910){
-                txtNombreUsuario.setText("");
-                txtContrasenna.clear();
-                mostrarVistaJuezSinParametro();
+                rooter.showVistaJuez();
             } else {
                txtConfirmacion.setText("Datos incorrectos, inténtelo nuevamente");
                txtNombreUsuario.setText("");
@@ -115,9 +76,7 @@ public class FXMLDocumentController implements Initializable {
         
         case "jav34":
             if (password == 1910){
-                txtNombreUsuario.setText("");
-                txtContrasenna.clear();
-                mostrarVistaJuezSinParametro();
+                rooter.showVistaJuez();
             } else {
                txtConfirmacion.setText("Datos incorrectos, inténtelo nuevamente");
                txtNombreUsuario.setText("");
@@ -127,9 +86,7 @@ public class FXMLDocumentController implements Initializable {
 
         case "Esteb":
             if (password == 1910){
-                txtNombreUsuario.setText("");
-                txtContrasenna.clear();
-                mostrarRegistrarCasosSinParametro();
+                rooter.showVistaJuez();
             } else {
                txtConfirmacion.setText("Datos incorrectos, inténtelo nuevamente");
                txtNombreUsuario.setText("");
@@ -144,14 +101,11 @@ public class FXMLDocumentController implements Initializable {
 
      }
 
+    }*/
+    
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        // TODO
     }    
-    
-    
-    
-    
-    
-    
-    
-    
     
 }
